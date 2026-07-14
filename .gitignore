@@ -244,3 +244,7 @@ cython_debug/
 
 # Runtime logs / benchmark artifacts
 logs/
+
+# Frontend (Vite + React)
+frontend/node_modules/
+frontend/dist/
