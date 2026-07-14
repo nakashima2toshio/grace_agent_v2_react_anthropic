@@ -1,6 +1,20 @@
 # 自律型Agent + RAG (Anthropic Claude API版) プロジェクト
 
-## 【NEW】業界特化（Gov・自治体、SaaS、EC）自律型AI-Agent（GRACE-Support）
+## 【NEW】GRACE-Support の React マイグレーション（FastAPI + React Web UI）
+
+本リポジトリは `anthropic_grace_agent_v2` からの移行先で、CLI ツール
+`agent_support_example.py`（GRACE-Support）を **FastAPI（backend/）＋ React（frontend/）** の
+Web UI へ移行済み。処理パイプラインは CLI 版と同一で、HITL CONFIRM は画面上の
+承認（承認なしにアクションは実行されない・タイムアウトは安全側＝escalate）に置き換わった。
+
+> **構成・起動手順・API 仕様: [readme_react_migration.md](readme_react_migration.md)**
+
+```bash
+# バックエンド:  uv run uvicorn backend.app.main:app --reload --port 8000
+# フロントエンド: cd frontend && npm install && npm run dev  → http://localhost:5173
+```
+
+## 業界特化（Gov・自治体、SaaS、EC）自律型AI-Agent（GRACE-Support）
 
 日本語 RAG 自律エージェント（GRACE）を土台にした**カスタマーサポート／社内ナレッジ・コパイロット**の業界特化版です。
 **「共通エンジンは 1 つ、差し替わるのはプロファイルだけ」** — `--vertical {gov|saas|ec}` で業界プロファイル

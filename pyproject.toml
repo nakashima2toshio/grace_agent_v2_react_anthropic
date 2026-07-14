@@ -148,7 +148,7 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "backend/tests"]
 filterwarnings = [
     # google-genai SDK にテスト用 MagicMock を渡した際、enum 型フィールド走査で
     # 大量に出る無害な UserWarning（"... is not a valid <EnumType>"）を抑止する。
@@ -167,10 +167,11 @@ ignore = ["E501"]
 # known-first-party を明示しないと CI(未インストール)とローカル(導入済)で
 # isort 分類が割れ、I001 がローカル緑/CI赤になる。トップレベルの module/package を列挙。
 known-first-party = [
-  "agent_cache", "agent_main", "agent_parallel_search", "agent_rag", "agent_tools",
+  "agent_cache", "agent_main", "agent_parallel_search", "agent_rag",
+  "agent_support_example", "agent_tools", "backend",
   "celery_config", "celery_tasks", "chunking", "config", "eval", "grace", "helper",
   "models", "qa_generation", "qa_qdrant", "qdrant_client_wrapper", "regex_mecab",
-  "run_benchmark", "services", "tools", "ui",
+  "run_benchmark", "services", "support_actions", "tools", "ui",
 ]
 
 [build-system]
