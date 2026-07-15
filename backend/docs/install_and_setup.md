@@ -1,6 +1,6 @@
 # GRACE-Support インストール・環境設定ガイド
 
-**Version 1.0** | 最終更新: 2026-07-15
+**Version 1.1** | 最終更新: 2026-07-15
 
 GRACE-Support Web アプリ（**FastAPI バックエンド ＋ Vite + React フロントエンド**）を
 ローカルで動かすための、インストールと環境設定の手順。認証なし・ローカル開発専用。
@@ -184,6 +184,25 @@ docker-compose -f docker-compose/docker-compose.yml up -d qdrant
 
 ## 6. 起動手順
 
+### 6.1 最短（推奨・1 コマンド）
+
+リポジトリルートの `run_dev.sh` が、依存の用意（`uv sync --extra dev`／frontend の
+`npm install`）と backend(:8000)・frontend(:5173) の同時起動をまとめて行う。
+
+```bash
+chmod +x run_dev.sh   # 初回のみ
+./run_dev.sh
+#   → backend:  http://localhost:8000（/docs）
+#   → frontend: http://localhost:5173  ← ブラウザで開くのはこちら
+#   停止は Ctrl+C（backend / frontend を両方まとめて停止）
+```
+
+- Qdrant は別実行（§5）。`run_dev.sh` は起動時に疎通チェックし、未起動なら警告を出す
+  （起動自体は続行）。
+- ポートを変えたい場合: `BACKEND_PORT=8080 ./run_dev.sh`。
+
+### 6.2 手動（プロセスを分けて起動）
+
 **別々のターミナル**で 2 プロセスを起動する。
 
 ```bash
@@ -263,3 +282,4 @@ npm run build   # tsc --noEmit + vite build
 | バージョン | 変更内容 |
 |-----------|---------|
 | 1.0 | 初版作成（前提ソフト・uv/npm 依存・.env・Qdrant・起動・動作確認・テスト・トラブルシュート） |
+| 1.1 | §6 に「6.1 最短（1 コマンド `./run_dev.sh`）」を追加（backend + frontend の一括起動） |
