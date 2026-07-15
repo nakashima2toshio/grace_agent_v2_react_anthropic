@@ -1,6 +1,6 @@
 # backend/ ドキュメント整備インデックス
 
-**Version 1.2** | 最終更新: 2026-07-15
+**Version 1.3** | 最終更新: 2026-07-15
 
 > ✅ **本インデックス掲載のモジュール仕様（IPO）9 ファイルはすべて作成済み**（§2 参照）。
 
@@ -21,6 +21,24 @@ GRACE-Support は **FastAPI（バックエンド, :8000）＋ Vite + React（フ
 
 **前提**: リポジトリルートの `.env` に `ANTHROPIC_API_KEY`（LLM）と `GOOGLE_API_KEY`（Embedding）、
 Python 3.11+ / `uv` / Node.js / Docker が導入済み。
+
+### 最短（推奨・1 コマンドで起動）
+
+```bash
+# 1) Qdrant（ベクトルDB）を起動（別実行・初回/停止後のみ）
+docker-compose -f docker-compose/docker-compose.yml up -d
+
+# 2) backend + frontend を 1 コマンドで起動（依存の用意も自動）
+./run_dev.sh
+#   → backend:  http://localhost:8000（/docs）
+#   → frontend: http://localhost:5173  ← ブラウザで開くのはこちら
+#   停止は Ctrl+C（両方まとめて停止）
+```
+
+`run_dev.sh` は `uv sync --extra dev` → frontend 依存の用意 → uvicorn(:8000) と
+Vite(:5173) の同時起動までを行う（リポジトリルートの `run_dev.sh`）。
+
+### 手動（プロセスを分けて起動）
 
 ```bash
 # 1) Qdrant（ベクトルDB）を起動
@@ -152,3 +170,4 @@ backend/
 | 1.0 | 初版作成（backend/ ドキュメント整備の対象一覧・出力先・進捗をまとめたインデックス。`main.py` を作成済としてマーク） |
 | 1.1 | モジュール仕様（IPO）残り 8 ファイル（schemas / api_support / api_meta / core_support_agent / core_gates / core_jobs / core_intervention_bridge / core_verticals）を作成し、状態列を全て「作成済」に更新 |
 | 1.2 | 先頭に「§0 アプリの実行方法（クイックスタート）」を追加し、`install_and_setup.md`（インストール・環境設定）へのリンクを追記 |
+| 1.3 | §0 に「最短（1 コマンド `./run_dev.sh`）」の起動方法を追加（backend + frontend を一括起動） |
