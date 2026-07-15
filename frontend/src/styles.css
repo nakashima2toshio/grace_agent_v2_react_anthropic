@@ -278,6 +278,105 @@ header p {
   margin: 8px 0;
 }
 
+/* ---- Markdown 描画（回答本文） ---- */
+.markdown-body {
+  margin: 8px 0;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin: 16px 0 8px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.markdown-body h1 { font-size: 1.4rem; }
+.markdown-body h2 {
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+.markdown-body h3 { font-size: 1.05rem; }
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 { font-size: 0.95rem; }
+
+.markdown-body > *:first-child {
+  margin-top: 0;
+}
+
+.markdown-body p {
+  margin: 8px 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin: 8px 0;
+  padding-left: 1.4em;
+}
+
+.markdown-body li {
+  margin: 3px 0;
+}
+
+.markdown-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.markdown-body code {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 0.88em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 14px 0;
+}
+
+.markdown-body blockquote {
+  margin: 8px 0;
+  padding: 4px 12px;
+  border-left: 3px solid var(--border);
+  color: var(--muted);
+}
+
+.markdown-table-wrap {
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.markdown-body thead th {
+  background: var(--bg);
+  font-weight: 600;
+}
+
 .notice {
   background: var(--amber-bg);
   color: var(--amber);

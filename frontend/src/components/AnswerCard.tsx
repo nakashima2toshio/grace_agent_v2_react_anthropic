@@ -1,6 +1,7 @@
 // 回答カード: decision バッジ（answer=緑 / escalate=赤）、回答本文、出典リスト
 // （[社内] と [Web] を区別表示）、groundedness スコア、エスカレ理由、アクション結果。
 import type { SupportResult } from '../types';
+import { Markdown } from './Markdown';
 
 function escalateReason(result: SupportResult): string {
   if (result.forced_escalate) {
@@ -37,7 +38,11 @@ export function AnswerCard({ result }: { result: SupportResult }) {
 
       {isAnswer ? (
         <>
-          <p className="answer-text">{result.answer || '（回答なし）'}</p>
+          {result.answer ? (
+            <Markdown source={result.answer} />
+          ) : (
+            <p className="answer-text">（回答なし）</p>
+          )}
           {result.warning && (
             <p className="notice">
               ⚠️ 注意: この回答は出典による裏付けが十分ではありません。内容をご確認ください。
