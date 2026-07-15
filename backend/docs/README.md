@@ -1,6 +1,6 @@
 # backend/ ドキュメント整備インデックス
 
-**Version 1.1** | 最終更新: 2026-07-15
+**Version 1.2** | 最終更新: 2026-07-15
 
 > ✅ **本インデックス掲載のモジュール仕様（IPO）9 ファイルはすべて作成済み**（§2 参照）。
 
@@ -8,6 +8,46 @@
 ドキュメント作成対象・出力先・進捗を一覧化した資料。個別モジュールの詳細ドキュメントは
 IPO 形式（`.claude/skills/grace-agent-docs/a_class_method_md_format.md`）で作成し、
 `backend/app/doc/<module>.md` に配置する。
+
+---
+
+## 0. アプリの実行方法（クイックスタート）
+
+GRACE-Support は **FastAPI（バックエンド, :8000）＋ Vite + React（フロントエンド, :5173）** の
+2 プロセス構成。**画面は :5173 で開く**（:8000 は API 専用で、`/` は 404 が正常）。
+
+> 📦 初回のインストール・環境構築（uv / Node / Docker / `.env` / トラブルシュート）は
+> **[`install_and_setup.md`](./install_and_setup.md)** を参照。以下は導入済み前提の起動手順。
+
+**前提**: リポジトリルートの `.env` に `ANTHROPIC_API_KEY`（LLM）と `GOOGLE_API_KEY`（Embedding）、
+Python 3.11+ / `uv` / Node.js / Docker が導入済み。
+
+```bash
+# 1) Qdrant（ベクトルDB）を起動
+docker-compose -f docker-compose/docker-compose.yml up -d
+
+# 2) バックエンド（FastAPI）★リポジトリルートで実行
+uv sync --extra dev
+uv run uvicorn backend.app.main:app --reload --port 8000
+#   → API: http://localhost:8000 、自動ドキュメント: http://localhost:8000/docs
+
+# 3) フロントエンド（別ターミナル）
+cd frontend
+npm install
+npm run dev
+#   → UI: http://localhost:5173（/api は :8000 へ proxy）
+```
+
+ブラウザで **http://localhost:5173** を開く。フロントの `/api/*` は Vite の proxy
+（`frontend/vite.config.ts`）で :8000 の FastAPI へ中継される（SSE 進捗も同経路）。
+
+**CLI 版**（従来どおり・コア共有）:
+
+```bash
+uv run python agent_support_example.py --vertical ec "返品したい"
+```
+
+**動作確認だけ**したい場合: `http://localhost:8000/api/health`（APIキー設定の有無を返す）。
 
 ---
 
@@ -111,3 +151,4 @@ backend/
 |-----------|---------|
 | 1.0 | 初版作成（backend/ ドキュメント整備の対象一覧・出力先・進捗をまとめたインデックス。`main.py` を作成済としてマーク） |
 | 1.1 | モジュール仕様（IPO）残り 8 ファイル（schemas / api_support / api_meta / core_support_agent / core_gates / core_jobs / core_intervention_bridge / core_verticals）を作成し、状態列を全て「作成済」に更新 |
+| 1.2 | 先頭に「§0 アプリの実行方法（クイックスタート）」を追加し、`install_and_setup.md`（インストール・環境設定）へのリンクを追記 |
