@@ -287,7 +287,7 @@ def main():
                 "explanation_diagram": "📖 システム説明（図表）",
                 "explanation_document": "📖 システム説明（ドキュメント）",
                 "qdrant_search": "🔎 Qdrant検索",
-                "agent_chat": "自立型Agent(ReAct+Reflection)",
+                "agent_chat": "自律型Agent(ReAct+Reflection)",
                 "grace_chat": "自律型Agent(最新：動的Agent)",
                 "log_viewer": "📊 未回答ログ",
                 "rag_data_creation": "📄 RAGデータ作成",
