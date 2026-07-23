@@ -7,7 +7,7 @@
 本書は両者の**処理・流れを比較**し、どこが共有でどこが独自かを明確化する。
 
 - 測定の詳細: `grace/docs/confidence_calibration.md`（`confidence.py` × `calibration.py`）
-- backend 判定の詳細: `backend/app/doc/core_gates.md`（`gates.py` の純関数群）
+- backend 判定の詳細: `backend/docs/core_gates.md`（`gates.py` の純関数群）
 
 技術スタック: LLM = Anthropic Claude（既定 `claude-sonnet-4-6`／軽量
 `claude-haiku-4-5-20251001`）、Embedding = Gemini（`gemini-embedding-001`）。
@@ -224,8 +224,8 @@ style BACKEND fill:#1a1a1a,stroke:#fff,color:#fff
 | ドキュメント | 内容 |
 |---|---|
 | `grace/docs/confidence_calibration.md` | `confidence.py` × `calibration.py` の処理順・処理内容 |
-| `backend/app/doc/core_gates.md` | `gates.py`（`_answer_gate` 等）の IPO 詳細 |
-| `backend/app/doc/core_support_agent.md` | ④〜⑥ を統括するコアパイプライン |
+| `backend/docs/core_gates.md` | `gates.py`（`_answer_gate` 等）の IPO 詳細 |
+| `backend/docs/core_support_agent.md` | ④〜⑥ を統括するコアパイプライン |
 | `grace/doc/confidence.md` / `grace/doc/calibration.md` | 各モジュールの IPO 詳細 |
 
 ---

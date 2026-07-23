@@ -1,13 +1,13 @@
 # backend/ ドキュメント整備インデックス
 
-**Version 1.3** | 最終更新: 2026-07-15
+**Version 1.4** | 最終更新: 2026-07-23
 
 > ✅ **本インデックス掲載のモジュール仕様（IPO）9 ファイルはすべて作成済み**（§2 参照）。
 
 `backend/`（GRACE-Support Web API: FastAPI + コアサービス）配下のモジュールについて、
 ドキュメント作成対象・出力先・進捗を一覧化した資料。個別モジュールの詳細ドキュメントは
 IPO 形式（`.claude/skills/grace-agent-docs/a_class_method_md_format.md`）で作成し、
-`backend/app/doc/<module>.md` に配置する。
+`backend/docs/<module>.md` に配置する。
 
 ---
 
@@ -76,7 +76,7 @@ uv run python agent_support_example.py --vertical ec "返品したい"
   - モジュール（クラス/関数）… IPO 形式（`a_class_method_md_format.md`）
   - 単体テスト … SAE 形式（`a_test_md_format.md`、`grace-agent-tests` スキル担当）
 - **出力先**: モジュールドキュメントは既存規約 `<package>/doc/<module>.md` に合わせ
-  **`backend/app/doc/<module>.md`**。本インデックスは `backend/docs/README.md`。
+  **`backend/docs/<module>.md`**。本インデックスは `backend/docs/README.md`。
 - **技術スタック表記**: LLM = Anthropic Claude（既定 `claude-sonnet-4-6`）／
   Embedding = Gemini（`gemini-embedding-001`, 3072次元）。
 
@@ -86,15 +86,15 @@ uv run python agent_support_example.py --vertical ec "返品したい"
 
 | # | ソースファイル | 行数 | クラス/関数 | 役割 | ドキュメント出力先 | 優先度 | 状態 |
 |---|---|---:|---:|---|---|:--:|:--:|
-| 1 | `backend/app/main.py` | 49 | 0（モジュール構成のみ） | FastAPI 起動・CORS・ルーター結線 | `backend/app/doc/main.md` | ★ | ✅ 作成済 |
-| 2 | `backend/app/schemas.py` | 106 | 9 | Pydantic リクエスト/レスポンス/イベント型 | `backend/app/doc/schemas.md` | 高 | ✅ 作成済 |
-| 3 | `backend/app/api/support.py` | 83 | 4 | `/api/support/*`（query / stream(SSE) / confirm / result） | `backend/app/doc/api_support.md` | 高 | ✅ 作成済 |
-| 4 | `backend/app/api/meta.py` | 42 | 2 | `/api/verticals`・`/api/health` | `backend/app/doc/api_meta.md` | 中 | ✅ 作成済 |
-| 5 | `backend/app/core/support_agent.py` | 534 | 5 | ★コア（イベント発行型パイプライン） | `backend/app/doc/core_support_agent.md` | 最高 | ✅ 作成済 |
-| 6 | `backend/app/core/gates.py` | 371 | 14 | 回答ゲート/強制エスカレ/情報なし検知/救済（純関数群） | `backend/app/doc/core_gates.md` | 高 | ✅ 作成済 |
-| 7 | `backend/app/core/jobs.py` | 168 | 3 | ジョブ管理（インメモリ） | `backend/app/doc/core_jobs.md` | 中 | ✅ 作成済 |
-| 8 | `backend/app/core/intervention_bridge.py` | 125 | 2 | HITL ↔ フロント承認の非同期ブリッジ | `backend/app/doc/core_intervention_bridge.md` | 中 | ✅ 作成済 |
-| 9 | `backend/app/core/verticals.py` | 84 | 2 | VerticalProfile 定義（業界プロファイル） | `backend/app/doc/core_verticals.md` | 中 | ✅ 作成済 |
+| 1 | `backend/app/main.py` | 49 | 0（モジュール構成のみ） | FastAPI 起動・CORS・ルーター結線 | `backend/docs/main.md` | ★ | ✅ 作成済 |
+| 2 | `backend/app/schemas.py` | 106 | 9 | Pydantic リクエスト/レスポンス/イベント型 | `backend/docs/schemas.md` | 高 | ✅ 作成済 |
+| 3 | `backend/app/api/support.py` | 83 | 4 | `/api/support/*`（query / stream(SSE) / confirm / result） | `backend/docs/api_support.md` | 高 | ✅ 作成済 |
+| 4 | `backend/app/api/meta.py` | 42 | 2 | `/api/verticals`・`/api/health` | `backend/docs/api_meta.md` | 中 | ✅ 作成済 |
+| 5 | `backend/app/core/support_agent.py` | 534 | 5 | ★コア（イベント発行型パイプライン） | `backend/docs/core_support_agent.md` | 最高 | ✅ 作成済 |
+| 6 | `backend/app/core/gates.py` | 371 | 14 | 回答ゲート/強制エスカレ/情報なし検知/救済（純関数群） | `backend/docs/core_gates.md` | 高 | ✅ 作成済 |
+| 7 | `backend/app/core/jobs.py` | 168 | 3 | ジョブ管理（インメモリ） | `backend/docs/core_jobs.md` | 中 | ✅ 作成済 |
+| 8 | `backend/app/core/intervention_bridge.py` | 125 | 2 | HITL ↔ フロント承認の非同期ブリッジ | `backend/docs/core_intervention_bridge.md` | 中 | ✅ 作成済 |
+| 9 | `backend/app/core/verticals.py` | 84 | 2 | VerticalProfile 定義（業界プロファイル） | `backend/docs/core_verticals.md` | 中 | ✅ 作成済 |
 
 ---
 
@@ -128,20 +128,23 @@ uv run python agent_support_example.py --vertical ec "返品したい"
 ```
 backend/
 ├── app/
-│   ├── main.py                     # FastAPI 起動・CORS（ドキュメント: app/doc/main.md）
+│   ├── main.py                     # FastAPI 起動・CORS（ドキュメント: backend/docs/main.md）
 │   ├── schemas.py                  # Pydantic: リクエスト/レスポンス/イベント
 │   ├── api/
 │   │   ├── support.py              # POST /api/support/query, GET /stream(SSE), POST /confirm, GET /result
 │   │   └── meta.py                 # GET /api/verticals, GET /api/health
-│   ├── core/
-│   │   ├── support_agent.py        # ★コアサービス（イベント発行型パイプライン）
-│   │   ├── gates.py                # 回答ゲート/強制エスカレ/情報なし検知/救済（純関数）
-│   │   ├── intervention_bridge.py  # HITL ↔ フロント承認の非同期ブリッジ
-│   │   ├── jobs.py                 # ジョブ管理（インメモリ）
-│   │   └── verticals.py            # VerticalProfile 定義
-│   └── doc/                        # ← モジュールドキュメント（IPO形式）の出力先
+│   └── core/
+│       ├── support_agent.py        # ★コアサービス（イベント発行型パイプライン）
+│       ├── gates.py                # 回答ゲート/強制エスカレ/情報なし検知/救済（純関数）
+│       ├── intervention_bridge.py  # HITL ↔ フロント承認の非同期ブリッジ
+│       ├── jobs.py                 # ジョブ管理（インメモリ）
+│       └── verticals.py            # VerticalProfile 定義
+├── docs/                           # ← モジュールドキュメント（IPO形式）の出力先（本 README を含む）
 └── tests/                          # pytest（スタブベース・API キー不要）
 ```
+
+> 📁 モジュールドキュメント（IPO形式）は `backend/docs/<module>.md` に一本化。
+> 旧 `backend/app/doc/` は廃止（本ディレクトリへ統合）。
 
 ---
 
@@ -171,3 +174,4 @@ backend/
 | 1.1 | モジュール仕様（IPO）残り 8 ファイル（schemas / api_support / api_meta / core_support_agent / core_gates / core_jobs / core_intervention_bridge / core_verticals）を作成し、状態列を全て「作成済」に更新 |
 | 1.2 | 先頭に「§0 アプリの実行方法（クイックスタート）」を追加し、`install_and_setup.md`（インストール・環境設定）へのリンクを追記 |
 | 1.3 | §0 に「最短（1 コマンド `./run_dev.sh`）」の起動方法を追加（backend + frontend を一括起動） |
+| 1.4 | モジュールドキュメントの出力先を `backend/docs/` に一本化し、旧 `backend/app/doc/`（9 ファイル）を削除。§5 構成図と本文中のパス参照を `backend/docs/` に統一 |
